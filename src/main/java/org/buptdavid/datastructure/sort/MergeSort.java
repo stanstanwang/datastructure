@@ -10,10 +10,12 @@ package org.buptdavid.datastructure.sort;
  */
 public class MergeSort implements ISort {
 
+
+	// b栈参考 https://www.bilibili.com/video/BV1Pt4y197VZ
 	public void sort(int[] array) {
 		mergeSort(array, 0, array.length - 1);
 	}
-	
+
 	/**
 	 * 从索引low到high归并排序数组array
 	 * @param array
@@ -25,11 +27,11 @@ public class MergeSort implements ISort {
 			int middle = (low + high)/2;
 			mergeSort(array, low, middle);
 			mergeSort(array, middle + 1, high);
-			
+
 			merge(array, low, middle, high);
 		}
 	}
-	
+
 	/**
 	 * 归并array
 	 * @param array
@@ -43,26 +45,23 @@ public class MergeSort implements ISort {
 		for(int i = 0; i <= high; i++){
 			helper[i] = array[i];
 		}
-		
+
 		int helperLeft = low;
 		int helperRight = middle + 1;
 		int current = low;
-		
+
 		/**
 		 * 迭代访问helper数组，比较左右两半元素
 		 * 并将较小的元素复制到原先的数组中
 		 */
-		while(helperLeft <= middle && helperRight <= high){
-			if(helper[helperLeft] <= helper[helperRight]){
-				array[current] = helper[helperLeft];
-				helperLeft++;
-			} else{
-				array[current] = helper[helperRight];
-				helperRight++;
+		while (helperLeft <= middle && helperRight <= high) {
+			if (helper[helperLeft] <= helper[helperRight]) {
+				array[current++] = helper[helperLeft++];
+			} else {
+				array[current++] = helper[helperRight++];
 			}
-			current++;
 		}
-		
+
 		/**
 		 * 将数组左半剩余元素复制到原先的数组中
 		 */
