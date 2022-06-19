@@ -9,9 +9,22 @@ import java.util.function.Consumer;
  */
 public class GraphSearch2<T> {
 
+    StringBuilder sb = new StringBuilder();
+    Consumer<GraphNode<T>> defaultConsumer = node -> {
+        if (sb.length() > 0) {
+            sb.append("->");
+        }
+        sb.append(node.data.toString());
+    };
+
+
     /**
      * 深度优先搜索实现, 使用递归
      */
+    public void searchDFS(GraphNode<T> root) {
+        this.searchDFS(root, defaultConsumer);
+    }
+
     public void searchDFS(GraphNode<T> root, Consumer<GraphNode<T>> consumer) {
         if (root == null) {
             return;
@@ -38,6 +51,9 @@ public class GraphSearch2<T> {
     /**
      * 广度优先搜索实现,使用队列
      */
+    public void searchBFS(GraphNode<T> root) {
+        this.searchBFS(root, defaultConsumer);
+    }
     public void searchBFS(GraphNode<T> root, Consumer<GraphNode<T>> consumer) {
         if (root == null) {
             return;
@@ -69,4 +85,7 @@ public class GraphSearch2<T> {
     }
 
 
+    public String getSearchPath() {
+        return sb.toString();
+    }
 }

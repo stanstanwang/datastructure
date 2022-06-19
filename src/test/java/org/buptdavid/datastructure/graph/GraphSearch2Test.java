@@ -84,17 +84,9 @@ public class GraphSearch2Test {
     @Test
     public void searchDFSTest() {
         GraphSearch2<Integer> graphSearch = new GraphSearch2<Integer>();
-
-        StringBuilder sb = new StringBuilder();
-        graphSearch.searchDFS(node1, node -> {
-            if (sb.length() > 0) {
-                sb.append("->");
-            }
-            sb.append(node.data.toString());
-        });
-
+        graphSearch.searchDFS(node1);
         String expectedSearchPath = "1->2->4->5->6->3->7->8->9->10";
-        Assert.assertEquals(expectedSearchPath, sb.toString());
+        Assert.assertEquals(expectedSearchPath, graphSearch.getSearchPath());
     }
 
 
@@ -104,15 +96,8 @@ public class GraphSearch2Test {
     @Test
     public void searchBFSTest() {
         GraphSearch2<Integer> graphSearch = new GraphSearch2<Integer>();
-        StringBuilder sb = new StringBuilder();
-        graphSearch.searchBFS(node1, node -> {
-            if (sb.length() > 0) {
-                sb.append("->");
-            }
-            sb.append(node.data.toString());
-        });
-
+        graphSearch.searchBFS(node1);
         String expectedSearchPath = "1->2->3->4->5->6->7->8->9->10";
-        Assert.assertEquals(expectedSearchPath, sb.toString());
+        Assert.assertEquals(expectedSearchPath, graphSearch.getSearchPath());
     }
 }
