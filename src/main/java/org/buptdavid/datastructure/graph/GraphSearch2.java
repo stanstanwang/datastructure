@@ -49,7 +49,7 @@ public class GraphSearch2<T> {
 
 
     /**
-     * 广度优先搜索实现,使用队列
+     * 广度优先搜索实现,使用队列的先进先出特性
      */
     public void searchBFS(GraphNode<T> root) {
         this.searchBFS(root, defaultConsumer);
